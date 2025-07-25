@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+  mcp-server:
+    build: .
+    command: python3 server.py
+    secrets:
+      - api_keys
+    environment:
+      - API_KEYS_FILE=/run/secrets/api_keys
+    ports:
+      - "8050:8050"
+    volumes:
+      - ./app/docs:/app/app/docs
+      - ./app/vector_db:/app/app/vector_db
+
+  telegram-bot:
+    build: .
+    command: python3 client.py
+    secrets:
+      - api_keys
+    environment:
+      - API_KEYS_FILE=/run/secrets/api_keys
+    depends_on:
+      - mcp-server
+
+secrets:
+  api_keys:
+    file: .env

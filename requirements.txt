@@ -1,0 +1,12 @@
+mcp[cli]
+python-dotenv
+chromadb
+langchain
+langchain-community
+langchain-openai
+langchain-chroma
+aiogram
+tiktoken
+openai
+asyncio
+nest_asyncio

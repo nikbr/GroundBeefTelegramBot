@@ -1,0 +1,35 @@
+# Python virtualenv
+.venv/
+
+# Bytecode
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Misc
+.DS_Store
+
+# Environment files
+.env
+
+# Docker/Compose secrets (don't commit any secrets!)
+.secrets/
+*.secret
+
+# Persisted vector DBs or temp storage
+app/vector_db/
+
+chroma/
+*.chroma.db
+
+# Untracked large files or docs
+app/docs/*.pdf
+
+# Other
+*.sqlite3
+*.log
+
+# Ignore IDE/project files
+.vscode/
+.idea/
+*.swp
