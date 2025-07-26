@@ -10,3 +10,4 @@ tiktoken
 openai
 asyncio
 nest_asyncio
+pypdf

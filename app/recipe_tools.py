@@ -1,5 +1,5 @@
 import numpy as np
-from random import choice
+import random 
 from .rag import get_relevant_recipes
 import openai
 from .config import OPENAI_API_KEY
@@ -62,16 +62,20 @@ def scale_ingredients(ingredients, base_servings, target_servings):
 
 def generate_recipe(query, servings):
     print("Query:", query, flush=True)
-    docs = get_relevant_recipes(query, 1)
+    docs = get_relevant_recipes(query, 3)
     if not docs: return None
-    doc = docs[0]
+    doc = docs[random.randint(0, len(docs)-1)]
     result = call_llm(doc)
     print("Query result:", result, flush=True)
 
-    base_servings = result.get("servings",4)
+    try:
+        base_servings = int(result.get("servings",4))
+    except:
+        base_servings = 4
+
     scaled_ingredients = scale_ingredients(
         result['ingredients'],
-        int(base_servings),
+        base_servings,
         servings
     )
 
@@ -96,16 +100,21 @@ def generate_recipe(query, servings):
     return formattedResult
 
 def experimental_recipe(servings):
-    docs = get_relevant_recipes("ground beef", 5)
+    docs = get_relevant_recipes("ground beef", 12)
     if not docs: return None
-    doc = docs[0]
+    doc = docs[random.randint(0,len(docs)-1)]
     result = call_llm(doc)
     print("Query result:", result, flush=True)
 
-    base_servings = result.get("servings",4)
+    try:
+        base_servings = int(result.get("servings",4))
+    except:
+        base_servings = 4
+    
+    
     scaled_ingredients = scale_ingredients(
         result['ingredients'],
-        int(base_servings),
+        base_servings,
         servings
     )
 

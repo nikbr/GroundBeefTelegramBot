@@ -17,8 +17,9 @@ An AI-powered Recipe Assistant using Retrieval-Augmented Generation (RAG) with O
 
 ### 1. Clone this repo
 ### 2. Run 'python3 -m venv .venv'
-### 3. Run 'pip install -r requirements.txt'
-### 4. Upload your pdfs to app/docs
-### 5. Create a .env file based on .env_template
-### 6. Run 'python3 build_vectorstore.py'
-### 7. Run 'docker-compose up -d --build'
+### 3. Run 'source .venv/bin/activate'
+### 4. Run 'pip install -r requirements.txt'
+### 5. Upload your pdfs to app/docs
+### 6. Create a .env file based on .env_template
+### 7. Run 'python3 build_vectorstore.py'
+### 8. Run 'docker-compose up -d --build'

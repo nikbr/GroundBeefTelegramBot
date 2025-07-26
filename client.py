@@ -83,14 +83,14 @@ async def get_servings(msg: types.Message, state: FSMContext):
     recipe = response.content[0].model_dump()
     #print("Recipe:", recipe, flush=True)
     if "error" in recipe['text']:
-        await msg.answer("No recipe found for your input.")
+        await msg.answer("No recipe found for your input. \n /start again?")
         await state.clear()
         return
 
     try:
         recipe_data = json.loads(recipe['text'])
     except Exception as e:
-        await msg.answer("Recipe was not in valid JSON format.")
+        await msg.answer("Recipe was not in valid JSON format. \n /start again?")
         await state.clear()
         return
 
@@ -100,6 +100,7 @@ async def get_servings(msg: types.Message, state: FSMContext):
         "\n\n<b>Steps:</b>\n" + recipe_data['steps']
     )
     await msg.answer(text, parse_mode="HTML")
+    await msg.answer("/start again?")
     await state.clear()
 
 @dp.message(RecipeStates.surprise_servings)
@@ -114,14 +115,14 @@ async def get_surprise_servings(msg: types.Message, state: FSMContext):
     recipe = response.content[0].model_dump()
 
     if "error" in recipe['text']:
-        await msg.answer("No recipe found for your input.")
+        await msg.answer("No recipe found for your input. \n /start again?")
         await state.clear()
         return
 
     try:
         recipe_data = json.loads(recipe['text'])
     except Exception as e:
-        await msg.answer("Recipe was not in valid JSON format.")
+        await msg.answer("Recipe was not in valid JSON format. \n /start again?")
         await state.clear()
         return
 
@@ -131,6 +132,7 @@ async def get_surprise_servings(msg: types.Message, state: FSMContext):
         "\n\n<b>Steps:</b>\n" + recipe_data['steps']
     )
     await msg.answer(text, parse_mode="HTML")
+    await msg.answer("/start again?")
     await state.clear()
 
 def run_bot():
